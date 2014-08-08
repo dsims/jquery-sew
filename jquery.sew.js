@@ -111,7 +111,7 @@
   };
 
   Plugin.prototype.select = function () {
-    this.replace(this.filtered[this.index].val);
+    this.replace(this.filtered[this.index].replacement);
     this.$element.trigger('mention-selected',this.filtered[this.index]);
     this.hideList();
   };
@@ -129,7 +129,7 @@
 
     var fullStuff = this.getText();
     var val = fullStuff.substring(0, startpos);
-    val = val.replace(this.expression, '$1' + '$2' + replacement);
+    val = val.replace(this.expression, '$1' + replacement);
 
     var posfix = fullStuff.substring(startpos, fullStuff.length);
     var separator = posfix.match(/^\s/) ? '' : ' ';
@@ -309,7 +309,7 @@
   Plugin.prototype.onItemClick = function (element, e) {
     if(this.cleanupHandle) window.clearTimeout(this.cleanupHandle);
 
-    this.replace(element.val);
+    this.replace(element.replacement);
     this.$element.trigger('mention-selected',this.filtered[this.index]);
     this.hideList();
   };
